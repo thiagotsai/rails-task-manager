@@ -1,0 +1,23 @@
+<h1>Tasks Manager</h1>
+
+<%= link_to "New Task", new_task_path, class: "btn btn-primary"  %>
+<br>
+<hr>
+
+<div class="tasks">
+  <% @tasks.each do |task| %>
+    <div>
+    <span class="task-description">
+      <%= link_to task.description, task_path(task) %>
+    </span>
+    <% if task.completed %>
+    <span class="label label-primary">
+      <%= "Completed" if task.completed %>
+    </span>
+    <% end %>
+    <%= link_to "Edit", edit_task_path(task), class: "label label-info" %>
+    <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "label label-danger" %>
+    </div>
+  <% end %>
+</div>
+
